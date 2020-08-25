@@ -1,7 +1,0 @@
-/media/alien/Training/Kinetics/kinetics/kinetics_400_test/auctioning/Lw14NH9kAqE_000759_000769.mp4
-/media/alien/Training/Kinetics/kinetics/kinetics_400_test/cartwheeling/yW0-1NyZRhQ_000022_000032.mp4
-/media/alien/Training/Kinetics/kinetics/kinetics_400_test/cleaning shoes/y7cYaYX4gdw_000047_000057.mp4
-/media/alien/Training/Kinetics/kinetics/kinetics_400_test/cooking sausages/DMyjP7LxzAQ_000057_000067.mp4
-/media/alien/Training/Kinetics/kinetics/kinetics_400_test/eating hotdog/CxjipYE57Yo_000199_000209.mp4
-/media/alien/Training/Kinetics/kinetics/kinetics_400_test/playing poker/2xWiEVNUvhE_000064_000074.mp4
-/media/alien/Training/Kinetics/kinetics/kinetics_400_test/waxing chest/kinMMqkswUk_000120_000130.mp4

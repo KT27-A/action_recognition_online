@@ -1,0 +1,285 @@
+-------------------------------HMDB_train_resnext_16f------------------------------------
+CUDA_VISIBLE_DEVICES=0 python main.py --dataset HMDB51 --modality RGB --split 1 \
+--n_classes 400 --n_finetune_classes 51 \
+--batch_size 32 --log 1 --sample_duration 16 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--video_dir "../datasets/hmdb51_org" \
+--pretrained_path "../pretrained_model/RGB_Kinetics_16f.pth" \
+--annotation_path "data_process/HMDB51_labels" \
+--result_path "results_hmdb_online_2/" \
+--n_workers 2 --n_epochs 100
+
+-------------------------------HMDB_test_resnext_16f------------------------------------
+CUDA_VISIBLE_DEVICES=0 python test.py --dataset HMDB51 --modality RGB --split 1 \
+--n_classes 51 --n_finetune_classes 51 \
+--batch_size 1 --log 1 --sample_duration 16 \
+--model_name resnext --model_depth 101 \
+--video_dir "../datasets/hmdb51_org" \
+--test_md_path "results_hmdb_online_2/save_40_max.pth" \
+--annotation_path "data_process/HMDB51_labels" \
+--result_path "results_test/" \
+--n_workers 0 --n_epochs 100
+
+-------------------------------UCF_train_resnext_16f------------------------------------
+CUDA_VISIBLE_DEVICES=0 python main.py --dataset UCF101 --modality RGB --split 1 \
+--n_classes 400 --n_finetune_classes 101 \
+--batch_size 32 --log 1 --sample_duration 16 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--video_dir "../datasets/UCF-101" \
+--pretrained_path "../pretrained_model/RGB_Kinetics_16f.pth" \
+--annotation_path "data_process/UCF101_labels" \
+--result_path "results_ucf_online_2/" \
+--n_workers 2 --n_epochs 100
+
+-------------------------------UCF_test_resnext_16f------------------------------------
+CUDA_VISIBLE_DEVICES=0 python test.py --dataset UCF101 --modality RGB --split 1 \
+--n_classes 101 --n_finetune_classes 101 \
+--batch_size 1 --log 1 --sample_duration 16 \
+--model_name resnext --model_depth 101 \
+--video_dir "../datasets/UCF-101" \
+--test_md_path "results_ucf_online_2/save_35_max.pth" \
+--annotation_path "data_process/UCF101_labels" \
+--result_path "results_test/" \
+--n_workers 4 --n_epochs 100
+
+-------------------------------Kinetics_train_resnext_pretrain_scratch_16f------------------------------------
+CUDA_VISIBLE_DEVICES=1 python main.py --dataset KIN400 --modality RGB \
+--n_classes 400 --n_finetune_classes 400 \
+--batch_size 32 --log 1 --sample_duration 16 \
+--model_name resnext --model_depth 101 --ft_begin_index 0 \
+--pretrained_path "../pretrained_model/RGB_Kinetics_16f.pth" \
+--video_dir "/kinetics_400" \
+--annotation_path "data_process/kin400_labels" \
+--result_path "results_kin400_pretrain_scratch/" \
+--n_workers 4 --n_epochs 500 --learning_rate 0.001 --weight_decay 5e-4
+
+
+-------------------------------Kinetics_train_resnext_scratch_16f------------------------------------
+CUDA_VISIBLE_DEVICES=1 python main.py --dataset KIN400 --modality RGB \
+--n_classes 400 --n_finetune_classes 400 \
+--batch_size 32 --log 1 --sample_duration 16 \
+--model_name resnext --model_depth 101 --ft_begin_index 0 \
+--video_dir "/kinetics_400" \
+--annotation_path "data_process/kin400_labels" \
+--result_path "results_kin400_scratch/" \
+--n_workers 4 --n_epochs 500 --learning_rate 0.1 --weight_decay 5e-4
+
+-------------------------------Kinetics_train_resnext_16f------------------------------------
+CUDA_VISIBLE_DEVICES=1 python main.py --dataset KIN400 --modality RGB \
+--n_classes 400 --n_finetune_classes 400 \
+--batch_size 32 --log 1 --sample_duration 16 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--video_dir "/media/alien/Training/Kinetics/kinetics" \
+--pretrained_path "../pretrained_model/RGB_Kinetics_16f.pth" \
+--annotation_path "data_process/Kinetics_labels" \
+--result_path "results_kin400/" \
+--n_workers 4 --n_epochs 500
+
+-------------------------------Kinetics_test_resnext_16f------------------------------------
+CUDA_VISIBLE_DEVICES=0 python test.py --dataset KIN400 --modality RGB --split 1 \
+--n_classes 400 --n_finetune_classes 400 \
+--batch_size 1 --log 1 --sample_duration 16 \
+--model_name resnext --model_depth 101 \
+--video_dir "/kinetics_400" \
+--test_md_path "results_kin400_pretrain_scratch/save_98_max.pth" \
+--annotation_path "data_process/kin400_labels" \
+--result_path "results_kin400_pretrain_scratch/" \
+--n_workers 2
+
+
+-------------------------------MICE_train_resnext_16f------------------------------------
+CUDA_VISIBLE_DEVICES=0 python main.py --dataset MICE --modality RGB --split 1 \
+--n_classes 400 --n_finetune_classes 2 \
+--batch_size 32 --log 1 --sample_duration 64 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--video_dir "../datasets/mice" \
+--pretrained_path "../pretrained_model/RGB_Kinetics_64f.pth" \
+--annotation_path "data_process/mice_labels" \
+--result_path "results_mice_online/" \
+--n_workers 2 --n_epochs 100
+
+-------------------------------unite_train_cnn_rl_hmdb------------------------------------
+CUDA_VISIBLE_DEVICES=0 python main.py --dataset HMDB51 --modality RGB --split 1 \
+--n_classes 400 --n_finetune_classes 51 \
+--batch_size 32 --log 1 --sample_duration 16 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--video_dir "../datasets/hmdb51-video" \
+--pretrained_path "../pretrained_model/RGB_Kinetics_16f.pth" \
+--annotation_path "data_process/HMDB51_labels" \
+--result_path "results_test/" \
+--n_workers 0 --n_epochs 100 
+
+-------------------------------resume_train_cnn_rl------------------------------------
+CUDA_VISIBLE_DEVICES=1 python main_rl_siamese.py --dataset HMDB51 --modality RGB --split 1 \
+--n_classes 51 --n_finetune_classes 51 \
+--batch_size 32 --log 1 --sample_duration 16 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--frame_dir "../hmdb-51-1f-256" \
+--resume_path "results_hmdb_resnext101_10capa/save_14_max.pth" \
+--annotation_path "dataset/HMDB51_labels" \
+--result_path "results_hmdb_resnext101_10capa/" \
+--n_workers 2 --train_rl --steps_rl 2 --buffer_capacity 10 --actions_num 4 --show_img 
+
+-------------------------------resume_train_cnn_rl_ucf_64f------------------------------------
+CUDA_VISIBLE_DEVICES=1 python main_rl_siamese.py --dataset UCF101 --modality RGB --split 1 \
+--n_classes 101 --n_finetune_classes 101 \
+--batch_size 32 --log 1 --sample_duration 64 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--frame_dir "../UCF-101-1f-256" \
+--resume_path "results_ucf_split3_3a_10c_2s_ls_dev_logit_s0_real_random_staympi_spa0_uniform_64f/save_43_max.pth" \
+--annotation_path "dataset/UCF101_labels" \
+--result_path "results_ucf_split3_3a_10c_2s_ls_dev_logit_s0_real_random_staympi_spa0_uniform_64f/" \
+--n_workers 4 --train_rl --actions_num 3 --steps_rl 2 --buffer_capacity 10 --actions_num 4 
+--show_img
+
+-------------------------------unite_train_cnn_rl_ucf_64f------------------------------------
+CUDA_VISIBLE_DEVICES=0 python main_rl_siamese.py --dataset UCF101 --modality RGB --split 1 \
+--n_classes 400 --n_finetune_classes 101 \
+--batch_size 32 --log 1 --sample_duration 64 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--frame_dir "../UCF-101-1f-256" \
+--pre_cnn_path "../pretrained_model/RGB_Kinetics_64f.pth" \
+--annotation_path "dataset/UCF101_labels" \
+--result_path "results_3a_10c_2s_nopre_staympi_ucf/" \
+--n_workers 2 --train_rl --actions_num 3  --n_epochs 100 --spa_start 0 \
+--buffer_capacity 10 --steps_rl 2 --show_img
+
+-------------------------------train_hmdb_resnext101_rl------------------------------------
+CUDA_VISIBLE_DEVICES=0 python main_rl_siamese.py --batch_size 32 --n_classes 51 --model_name resnext --model_depth 101 \
+--log 0 --dataset HMDB51 --modality RGB --sample_duration 16 --split 1 --frame_dir "../hmdb-51-1f-256" \
+--pre_cnn_path "../pretrained_model/RGB_HMDB51_16f.pth" \
+--annotation_path "dataset/HMDB51_labels" --result_path "results_mpc_acc/" \
+--n_workers 0 --no_train --no_val --train_rl --actions_num 3 --reward_rl 'acc' --show_img
+
+-------------------------------resume_hmdb_resnext101_rl------------------------------------
+CUDA_VISIBLE_DEVICES=0 python main_rl_siamese.py --batch_size 32 --n_classes 51 --model_name resnext --model_depth 101 \
+--log 0 --dataset HMDB51 --modality RGB --sample_duration 16 --split 1 --frame_dir "../hmdb-51-1f-256" \
+--resume_path "results_hmdb_resnext101_10capa/save_14_max.pth" \
+--annotation_path "dataset/HMDB51_labels" --result_path "results_mpc_acc/" \
+--n_workers 0 --no_train --no_val --train_rl --actions_num 3 --reward_rl 'acc' --show_img
+
+-------------------------------train_hmdb_resnext101_rl_cnn------------------------------------
+CUDA_VISIBLE_DEVICES=1 python main_rl_siamese.py --dataset HMDB51 --modality RGB --split 1 \
+--n_classes 400 --n_finetune_classes 51 \
+--batch_size 32 --log 1 --sample_duration 16 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--frame_dir "../hmdb-51-1f-256" \
+--pre_cnn_path "../pretrained_model/RGB_Kinetics_16f.pth" \
+--pre_rl_path "results/model_mpbcnn_rl_ep_22.pth" \
+--annotation_path "dataset/HMDB51_labels" \
+--result_path "results_hmdb_resnext101/" \
+--n_workers 0 --steps_rl 2 --actions_num 3 --show_img --no_train
+
+-------------------------------test_hmdb_resnext101_rl_cnn------------------------------------
+CUDA_VISIBLE_DEVICES=1 python test_rl_siamese.py --dataset HMDB51 --modality RGB --split 1 \
+--n_classes 51 --n_finetune_classes 51 \
+--batch_size 1 --log 1 --sample_duration 16 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--frame_dir "../hmdb-51-1f-256" \
+--test_path "results_3a_10c_2s_normpre_staympi/save_31_max.pth" \
+--annotation_path "dataset/HMDB51_labels" \
+--result_path "results_3a_10c_2s_normpre_staympi/" \
+--n_workers 3 --actions_num 3 --buffer_capacity 10 --steps_rl 2 \
+--show_img
+
+-------------------------------test_hmdb_resnext101_rl_cnn_plusone------------------------------------
+CUDA_VISIBLE_DEVICES=1 python test_rl_siamese_plusone.py --dataset HMDB51 --modality RGB --split 1 \
+--n_classes 51 --n_finetune_classes 51 \
+--batch_size 1 --log 1 --sample_duration 16 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--frame_dir "../hmdb-51-1f-256" \
+--test_path "results_test/save_65_max.pth" \
+--annotation_path "dataset/HMDB51_labels" \
+--result_path "results_test/" \
+--n_workers 0 --actions_num 3 --buffer_capacity 10 --steps_rl 2 \
+--show_img
+
+-------------------------------test_hmdb_resnext101_rl_cnn_64f------------------------------------
+CUDA_VISIBLE_DEVICES=1 python test_rl_siamese.py --dataset HMDB51 --modality RGB --split 1 \
+--n_classes 51 --n_finetune_classes 51 \
+--batch_size 1 --log 1 --sample_duration 64 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--frame_dir "../hmdb-51-1f-256" \
+--test_path "results_hmdb_3a_10c_2s_ls_nopre_devrew_logit_s0_staympi_flip_64f/save_56_max.pth" \
+--annotation_path "dataset/HMDB51_labels" \
+--result_path "results_hmdb_3a_10c_2s_ls_nopre_devrew_logit_s0_staympi_flip_64f/" \
+--n_workers 2 --actions_num 3 --buffer_capacity 10 --steps_rl 2 \
+--show_img
+
+-------------------------------test_hmdb_resnext101_rl_cnn_64f_split2------------------------------------
+CUDA_VISIBLE_DEVICES=1 python test_rl_siamese.py --dataset HMDB51 --modality RGB --split 2 \
+--n_classes 51 --n_finetune_classes 51 \
+--batch_size 1 --log 1 --sample_duration 64 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--frame_dir "../hmdb-51-1f-256" \
+--test_path "results_hmdb_split2_3a_10c_2s_ls_nopre_devrew_logit_st0_real_spa20_64f/save_44_max.pth" \
+--annotation_path "dataset/HMDB51_labels" \
+--result_path "results_hmdb_split2_3a_10c_2s_ls_nopre_devrew_logit_st0_real_spa20_64f/" \
+--n_workers 4 --actions_num 3 --buffer_capacity 10 --steps_rl 2 \
+--show_img
+
+
+-------------------------------test_ucf_resnext101_rl_cnn------------------------------------
+CUDA_VISIBLE_DEVICES=0 python test_rl_siamese.py --dataset UCF101 --modality RGB --split 1 \
+--n_classes 101 --n_finetune_classes 101 \
+--batch_size 1 --log 1 --sample_duration 16 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--frame_dir "../UCF-101-1f-256" \
+--test_path "results_3a_10c_2s_nopre_staympi_ucf/save_45_max.pth" \
+--annotation_path "dataset/UCF101_labels" \
+--result_path "results_3a_10c_2s_nopre_staympi_ucf/" \
+--n_workers 2 --actions_num 3 --buffer_capacity 10 --steps_rl 2 \
+--show_img
+
+-------------------------------test_ucf_resnext101_rl_cnn_64f------------------------------------
+CUDA_VISIBLE_DEVICES=0 python test_rl_siamese.py --dataset UCF101 --modality RGB --split 3 \
+--n_classes 101 --n_finetune_classes 101 \
+--batch_size 1 --log 1 --sample_duration 64 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--frame_dir "../UCF-101-1f-256" \
+--test_path "results_ucf_split3_3a_10c_2s_ls_dev_logit_s0_real_random_staympi_spa0_uniform_64f/save_43_max.pth" \
+--annotation_path "dataset/UCF101_labels" \
+--result_path "results_ucf_split3_3a_10c_2s_ls_dev_logit_s0_real_random_staympi_spa0_uniform_64f/" \
+--n_workers 2 --actions_num 3 --buffer_capacity 10 --steps_rl 2 \
+--show_img
+
+-------------------------------test_hmdb_resnext101_rl_cnn_64f------------------------------------
+CUDA_VISIBLE_DEVICES=1 python test_rl_siamese.py --dataset HMDB51 --modality RGB --split 1 \
+--n_classes 51 --n_finetune_classes 51 \
+--batch_size 1 --log 1 --sample_duration 64 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--frame_dir "../hmdb-51-1f-256" \
+--test_path "results_3a_10c_2s_ls_nopre_staympi_64f/save_37_max.pth" \
+--annotation_path "dataset/HMDB51_labels" \
+--result_path "results_3a_10c_2s_ls_nopre_staympi_64f/" \
+--n_workers 3 --actions_num 3 --buffer_capacity 10 --steps_rl 2
+--show_img
+
+-------------------------------test_hmdb_resnext101_rl_cnn_64f------------------------------------
+CUDA_VISIBLE_DEVICES=1 python test_single_stream.py --dataset HMDB51 --modality RGB --split 1 \
+--n_classes 51 --n_finetune_classes 51 \
+--batch_size 1 --log 1 --sample_duration 16 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--frame_dir "../hmdb-51-1f-256" \
+--test_path "results_test/save_65_max.pth" \
+--annotation_path "dataset/HMDB51_labels" \
+--result_path "results_test/" \
+--n_workers 0 --actions_num 3 --buffer_capacity 10 --steps_rl 2
+--show_img
+
+
+-------------------------------single_mpc_test_hmdb_resnext101_rl_cnn------------------------------------
+CUDA_VISIBLE_DEVICES=1 python test_single_mpc.py --dataset HMDB51 --modality RGB --split 1 \
+--n_classes 51 --n_finetune_classes 51 \
+--batch_size 1 --log 1 --sample_duration 16 \
+--model_name resnext --model_depth 101 --ft_begin_index 4 \
+--frame_dir "../hmdb-51-1f-256" \
+--test_path "../pretrained_model/RGB_HMDB51_16f.pth" \
+--test_path_rl "results/model_mpbcnn_rl_ep_22.pth" \
+--annotation_path "dataset/HMDB51_labels" \
+--result_path "results_hmdb_resnext101/" \
+--n_workers 2 --actions_num 3 --pre_actions_num 1 --steps_rl 2 --show_img
+
+
+
+

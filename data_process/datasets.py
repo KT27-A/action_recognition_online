@@ -267,7 +267,6 @@ class HMDB51(Dataset):
         return clip, label_id
             
 
-
 class UCF101(Dataset):
     """UCF101 Dataset"""
     def __init__(self, data_type, opts, split=None):
@@ -345,82 +344,70 @@ class UCF101(Dataset):
 
         return clip, label_id
 
-        
-class MICE(Dataset):
-    """MICE Dataset"""
-    def __init__(self, data_type, opts, split=None):
+
+class SSthv1(Dataset):
+    def __init__(self, data_type, opts, sp_transform=None, split=None):
         """
         Args:
             opts   : config options
-            train : 0 for testing, 1 for training, 2 for validation 
-            split : 1,2,3 
+            data_type : 1 for training, 2 for validation 
+            split : 'val' or 'train'
         Returns:
-            (tensor(frames), class_id ): Shape of tensor C x T x H x W
+            (tensor(frames), class_id ) : Shape of tensor C x T x H x W
         """
-        self.data_type = data_type
+        self.split = split
         self.opts = opts
-        if data_type == 'train':
-            self.sp_transform = Compose([
-                TensorMultiScaleCornerCrop(opts.sample_size),
-                TensorFlip(),
-                Normalize(get_mean('activitynet'), [1,1,1])
-            ])
-        else:
-            self.sp_transform = Compose([
-                TensorCenterCrop(opts.sample_size),
-                Normalize(get_mean('activitynet'), [1,1,1])
-            ])
-        
-        with open(os.path.join(self.opts.annotation_path, "class.txt")) as lab_file:
+        self.data_type = data_type
+        self.sp_transform = sp_transform
+
+        # joing labnames with underscores
+        with open(os.path.join(self.opts.annotation_path, "category.txt")) as lab_file:
             self.lab_names = [line.strip('\n').split(' ')[1] for line in lab_file]
 
         # Number of classes
         self.N = len(self.lab_names)
-        assert self.N == 2
+        assert self.N == 174
+        
+        # indexes for validation set
+        if self.data_type == 'train':
+            label_file = os.path.join(self.opts.annotation_path, 'train_videofolder.txt')
+        else:
+            label_file = os.path.join(self.opts.annotation_path, 'val_videofolder.txt')
 
-        # indexes for training/test set
-
-        self.data = []        # (filename , lab_id)
-        if self.data_type == 'test':
-            filenames = 'test_mice.txt'
-        elif self.data_type == 'train':
-            filenames = 'train_mice.txt'
-        elif self.data_type == 'val':
-            filenames = 'test_mice.txt'
-
-        f = open(os.path.join(self.opts.annotation_path, filenames), 'r')
-
+        self.data = []                                     # (filename , lab_id)
+    
+        f = open(label_file, 'r')
         for line in f:
-            video_name, class_id = line.strip('\n').split(' #')
-            video_path = os.path.join(self.opts.video_dir, video_name+'.mp4')
-            if os.path.exists(video_path) == True:
-                self.data.append((video_path, class_id))
-            else:
-                print('ERROR no such video name {}'.format(video_name))
+            class_id = int(line.strip('\n').split(' ')[-1])
+            self.data.append((os.path.join(self.opts.frame_dir,line.strip('\n').split(' ')[0]), class_id))
         f.close()
+            
     def __len__(self):
         '''
         returns number of test set
-        ''' 
+        '''          
         return len(self.data)
 
     def __getitem__(self, idx):
         video = self.data[idx]
-        label_id = int(video[1])
-        video_path = video[0]
+        label_id = video[1]
+        frame_path = video[0]
         
+        if self.opts.modality == 'RGB':
+            Total_frames = len(glob.glob(glob.escape(frame_path) +  '/0*.jpg'))  
+        else:
+            # Total_frames = len(glob.glob(glob.escape(frame_path) +  '/TVL1jpg_y_*.jpg'))
+            Total_frames = len(glob.glob(glob.escape(frame_path) +  'frame*.jpg'))
 
         if self.data_type == 'test': 
-            clip = get_test_clip(self.opts, video_path)
+            clip = get_test_video(self.opts, frame_path, Total_frames)
         else:
-            clip = get_train_clip(self.opts, video_path)
+            clip = get_train_video(self.opts, frame_path, Total_frames)
 
-        self.sp_transform.randomize_parameters()
-        clip = self.sp_transform(clip)
+        or_clip, ct_clip = clip_to_or_re_tensor(clip, self.opts, self.sp_transform)
+        return scale_crop(clip, self.data_type, self.opts), or_clip, ct_clip, label_id
 
-        return clip, label_id
-
-
+ 
 class KIN400(Dataset):
     def __init__(self, data_type, opts, split=None):
         """
