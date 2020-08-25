@@ -1,0 +1,23 @@
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/bowling/f4eb0wOlspM_000053_000063.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/cooking chicken/2VfdCm8xoNg_000861_000871.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/dancing macarena/uGQgxFHemyA_000059_000069.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/dying hair/jHODDw65G4A_000085_000095.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/eating carrots/eiZ8Hzc7FPU_000080_000090.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/hockey stop/uRzki2HLhqA_000029_000039.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/making tea/mtYFNsRcxY4_000063_000073.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/picking fruit/3VvkoFtPCCU_000045_000055.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/picking fruit/NLf-rU1wlTY_000161_000171.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/playing flute/co50KUHacYw_000005_000015.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/playing paintball/SZtj2TEWiHc_000195_000205.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/playing poker/-jGxlNQKkeo_000092_000102.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/playing poker/6-DyF8umej8_000097_000107.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/playing saxophone/Zs0_2GMEPXo_000054_000064.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/pumping fist/wKsuyr6Xk30_000094_000104.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/punching bag/ixQrfusr6k8_000001_000011.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/robot dancing/J1x0XlWa6HM_000147_000157.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/spinning poi/5_gyoV_sQXU_000001_000011.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/surfing water/5l5Pdd96Pao_000161_000171.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/tap dancing/1_nxfkY76mk_000001_000011.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/tap dancing/NQcK4qPOqtg_000232_000242.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/waxing legs/cqUusXBODuw_001046_001056.mp4
+/media/alien/Training/Kinetics/kinetics/kinetics_400_train/windsurfing/i-gzh_BPDa8_000154_000164.mp4
